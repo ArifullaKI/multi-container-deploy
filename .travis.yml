@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t ArifSufiyan/multi-container -f ./client/Dockerfile.dev ./client
+  - docker build -t arifullaki/multi-container -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run ArifSufiyan/multi-container npm test -- --coverage
+  - docker run arifullaki/multi-container npm test -- --coverage
 
 after_success:
-  - docker build -t ArifSufiyan/multi-client ./client
-  - docker build -t ArifSufiyan/multi-nginx ./nginx
-  - docker build -t ArifSufiyan/multi-server ./server
-  - docker build -t ArifSufiyan/multi-worker ./worker
+  - docker build -t arifullaki/multi-client ./client
+  - docker build -t arifullaki/multi-nginx ./nginx
+  - docker build -t arifullaki/multi-server ./server
+  - docker build -t arifullaki/multi-worker ./worker
   #Log in to the docker CLI
   - echo "$Docker_password" | docker login -u "$Docker_ID" --password-stdin
   
   # Take the images and push them on docker hub.
-  - docker push ArifSufiyan/multi-client
-  - docker push ArifSufiyan/multi-nginx
-  - docker push ArifSufiyan/multi-server
-  - docker push ArifSufiyan/multi-worker
+  - docker push arifullaki/multi-client
+  - docker push arifullaki/multi-nginx
+  - docker push arifullaki/multi-server
+  - docker push arifullaki/multi-worker
