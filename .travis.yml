@@ -1,22 +1,23 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
 before_install:
-  - docker build -t arifullaki/multi-container -f ./client/Dockerfile.dev ./client
+  - docker build -t arifullaki/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run arifullaki/multi-container npm test -- --coverage
+  - docker run -e CI=true arifullaki/react-test npm test
 
 after_success:
   - docker build -t arifullaki/multi-client ./client
   - docker build -t arifullaki/multi-nginx ./nginx
   - docker build -t arifullaki/multi-server ./server
   - docker build -t arifullaki/multi-worker ./worker
-  #Log in to the docker CLI
+  # Log in to the docker CLI
   - echo "$Docker_password" | docker login -u "$Docker_ID" --password-stdin
-  
-  # Take the images and push them on docker hub.
+  # Take those images and push them to docker hub
   - docker push arifullaki/multi-client
   - docker push arifullaki/multi-nginx
   - docker push arifullaki/multi-server
