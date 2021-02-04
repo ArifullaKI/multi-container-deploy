@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t arifullaki/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t kiarifulla/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true arifullaki/react-test npm test
+  - docker run -e CI=true kiarifulla/react-test npm test
 
 after_success:
-  - docker build -t arifullaki/multi-client ./client
-  - docker build -t arifullaki/multi-nginx ./nginx
-  - docker build -t arifullaki/multi-server ./server
-  - docker build -t arifullaki/multi-worker ./worker
+  - docker build -t kiarifulla/multi-client ./client
+  - docker build -t kiarifulla/multi-nginx ./nginx
+  - docker build -t kiarifulla/multi-server ./server
+  - docker build -t kiarifulla/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$Docker_password" | docker login -u "$Docker_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push arifullaki/multi-client
-  - docker push arifullaki/multi-nginx
-  - docker push arifullaki/multi-server
-  - docker push arifullaki/multi-worker
+  - docker push kiarifulla/multi-client
+  - docker push kiarifulla/multi-nginx
+  - docker push kiarifulla/multi-server
+  - docker push kiarifulla/multi-worker
