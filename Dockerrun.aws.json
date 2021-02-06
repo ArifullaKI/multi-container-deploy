@@ -1,0 +1,39 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinations": [
+      {
+        "name": "client",
+        "image": "kiarifulla/multi-client",
+        "hostname": "client",
+        "essential": false
+      },
+      {
+        "name": "worker",
+        "image": "kiarifulla/multi-worker",
+        "hostname": "worker",
+        "essential": false
+      },
+      {
+        "name": "server",
+        "image": "kiarifulla/multi-server",
+        "hostname": "api",
+        "essential": false
+      },
+      {
+        "name": "nginx",
+        "image": "kiarifulla/multi-nginx",
+        "hostname": "nginx",
+        "essential": true,
+        "portmapping": [
+          {
+            "hostport": 80,
+            "containerPort": 80
+          }
+        ],
+        "links": [
+          "client",
+          "server"
+        ]
+      }
+    ]
+  }
