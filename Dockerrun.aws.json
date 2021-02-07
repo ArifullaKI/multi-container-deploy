@@ -27,6 +27,7 @@
         "image": "kiarifulla/multi-nginx",
         "hostname": "nginx",
         "essential": true,
+        "memory":128,
         "portmapping": [
           {
             "hostport": 80,
@@ -36,8 +37,8 @@
         "links": [
           "client",
           "server"
-        ],
-        "memory":128
+        ]
+        
       }
     ]
   }
