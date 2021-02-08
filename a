@@ -2,12 +2,3 @@ multi-docker-postgres
 postgres
 postgrespassword
 database name: fibvalues
-
-029719392277
-KMS key ID
-alias/aws/rds
-
-accesskey ID:
-AKIAQN23J6AKTILZRN4M
-secretaccesskey:
-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
